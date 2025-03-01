@@ -1,6 +1,10 @@
+<script setup>
+</script>
+
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-  </div>
+  <v-app>
+    <v-container>
+      <NuxtPage />
+    </v-container>
+  </v-app>
 </template>
