@@ -67,8 +67,8 @@ const deleteBand = async (id: number) => {
                         ></v-img>
                         <v-card-title>{{ band.name }}</v-card-title>
                         <v-card-actions>
-                            <v-btn color="primary" :to="`/bands/${band.id}`"
-                                >Ver detalhes</v-btn
+                            <v-btn color="primary" :to="`/band/${band.id}`"
+                                >Ver Albums</v-btn
                             >
                             <v-btn color="red" @click="confirmDelete(band.id)"
                                 >Apagar</v-btn
