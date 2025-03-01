@@ -7,6 +7,7 @@ const router = useRouter()
 const band = ref({
     name: "",
     genre: "",
+    imageUrl: "",
 })
 
 const successMessage = ref("")
@@ -30,6 +31,7 @@ const submitBand = async() => {
         band.value = {
             name: "",
             genre: "",
+            imageUrl: ""
         }
 
         setTimeout(() => router.back(), 1500);
@@ -48,6 +50,7 @@ const submitBand = async() => {
             <v-form @submit.prevent="submitBand">
                 <v-text-field v-model="band.name" label="Nome da Banda" required></v-text-field>
                 <v-select v-model="band.genre" label="Genero" :items="['Nu-Metal', 'Black-Metal', 'Groove-Metal', 'Thrash-Metal', 'Death-Metal']" required></v-select>
+                <v-text-field v-model="band.imageUrl" label="Imagem da Banda" required></v-text-field>
                 <v-alert v-if="successMessage" type="success" class="mt-3">{{ successMessage }}</v-alert>
                 <v-alert v-if="errorMessage" type="error" class="mt-3">{{ errorMessage }}</v-alert>
 

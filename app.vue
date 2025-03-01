@@ -1,10 +1,10 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
-  <v-app>
-    <v-container>
-      <NuxtPage />
-    </v-container>
-  </v-app>
+    <v-app>
+        <NavBar></NavBar>
+        <v-container class="mt-12">
+            <NuxtPage />
+        </v-container>
+    </v-app>
 </template>
