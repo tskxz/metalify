@@ -8,6 +8,7 @@ const items = [
     { title: "Black-Metal", route: "/bands-black-metal" },
     { title: "Groove-Metal", route: "/bands-groove-metal" },
     { title: "Death-Metal", route: "/bands-death-metal" },
+    { title: "Trash-Metal", route: "/bands-thrash-metal" },
 ];
 
 const goToGenre = (route) => {
