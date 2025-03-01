@@ -47,9 +47,14 @@ const deleteBand = async (id: number) => {
                 >🎸 Bandas de {{ genre }}</v-card-title
             >
             <v-divider class="mb-4"></v-divider>
-            <v-btn color="primary" @click="goBack" class="mb-4"
-                >⬅ Voltar</v-btn
-            >
+             
+              <v-card-actions>
+        <v-btn color="primary" @click="goBack" class="mb-4">⬅ Voltar</v-btn>
+        <v-spacer></v-spacer>
+
+        <v-btn color="primary" to="/add-band" class="mb-4">➕ Adicionar Banda</v-btn>
+      </v-card-actions>
+        <v-spacer></v-spacer>
             <v-row>
                 <v-col
                     v-for="band in bands"
