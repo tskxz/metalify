@@ -16,7 +16,7 @@ const goToGenre = (route) => {
 </script>
 
 <template>
-    <v-card class="mx-auto" max-width="400">
+    <v-card class="mx-auto" max-width="400" style="margin: 100px;">
         <v-card-title class="text-h5">🎸 Metalify</v-card-title>
         <v-divider></v-divider>
         <v-list>
@@ -25,6 +25,7 @@ const goToGenre = (route) => {
                 :key="item.route"
                 @click="goToGenre(item.route)"
                 class="cursor-pointer"
+
             >
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item>
