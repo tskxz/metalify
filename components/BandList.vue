@@ -62,7 +62,7 @@ const deleteBand = async (id: number) => {
                         <v-img
                             v-if="band.imageUrl"
                             :src="band.imageUrl"
-                            height="200px"
+                            height="600px"
                             cover
                         ></v-img>
                         <v-card-title>{{ band.name }}</v-card-title>
