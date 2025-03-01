@@ -15,6 +15,27 @@
       "when": 1740840532053,
       "tag": "0001_odd_jocasta",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1740844233154,
+      "tag": "0002_gigantic_lady_ursula",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1740844362171,
+      "tag": "0003_woozy_freak",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1740844411802,
+      "tag": "0004_empty_paibok",
+      "breakpoints": true
     }
   ]
 }
