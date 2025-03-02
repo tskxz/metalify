@@ -29,6 +29,10 @@ const goToEditAlbum = (albumId: number) => {
   router.push(`/edit-album/${bandId}/${albumId}`)
 }
 
+const goToSongs = (albumId: number) => {
+  router.push(`/songs/${albumId}/${bandId}`)
+}
+
 
 const showModal = ref(false);
 const albumToDelete = ref<number | null>(null)
@@ -74,7 +78,7 @@ const deleteAlbum = async (id: number) => {
             <v-img v-if="album.imageUrl" :src="album.imageUrl" height="600px" cover></v-img>
             <v-card-title>{{ album.title }}</v-card-title>
             <v-card-actions>
-                <v-btn color="primary">Ver Sons</v-btn>
+                <v-btn color="primary" @click="goToSongs(album.id)">Ver Sons</v-btn>
                 <v-btn color="orange" @click="goToEditAlbum(album.id)">Editar Album</v-btn>
                    <v-btn color="red" @click="confirmDelete(album.id)">Apagar</v-btn>
                 </v-card-actions>
