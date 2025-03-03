@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// TODO: EDITAR APAGAR E ADICIONAR SOM
 import {useRoute, useRouter} from "vue-router";
 import {useSongs} from "@/composables/useSongs";
 import {useAlbum} from "@/composables/useAlbum"
@@ -37,6 +36,26 @@ const extractVideoId = (url: string) => {
   return match ? match[1] : null;
 };
 
+const showModal = ref(false);
+const songToDelete = ref<number | null>(null)
+const confirmDelete = (id: number) => {
+  songToDelete.value = id
+  showModal.value = true
+}
+
+const deleteSong = async(id: number) => {
+  try{
+    await fetch(`${config.public.apiBase}/songs/${songToDelete.value}`, {
+      method: "DELETE"
+    });
+    songs.value = songs.value.filter((song) => song.id !== songToDelete.value)
+  } catch (e) {
+    console.error("Erro ao apagar som:", e)
+  } finally {
+    showModal.value = false;
+    songToDelte.value = null;
+  }
+}
 </script>
 
 <template>
@@ -74,11 +93,23 @@ const extractVideoId = (url: string) => {
             <v-card-actions>
                 
                 <v-btn color="orange" @click="gotoEditSong(song.id)">Editar Som</v-btn>
-                   <v-btn color="red">Apagar</v-btn>
+                   <v-btn color="red" @click="confirmDelete(song.id)">Apagar</v-btn>
                 </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
     </v-card>
   </v-container>
+
+  <v-dialog v-model="showModal" max-width="400">
+    <v-card>
+      <v-card-title class="text-h5">Confirmar acao</v-card-title>
+      <v-card-text>Tem a certeza que quer apagar este som?</v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="grey" @click="showModal=false">Cancelar</v-btn>
+        <v-btn color="red" @click="deleteSong">Apagar</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
