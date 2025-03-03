@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// TODO: EDITAR BANDA
 import { useBands } from "@/composables/useBands";
 import { useRouter } from "vue-router";
 import { useRuntimeConfig } from "#app";

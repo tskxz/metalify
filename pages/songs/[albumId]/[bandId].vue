@@ -27,6 +27,10 @@ const gotoAddSong = () => {
   router.push(`/add-song/${bandId}/${albumId}`)
 }
 
+const gotoEditSong = (songId: number) => {
+  router.push(`/edit-song/${bandId}/${albumId}/${songId}`)
+}
+
 const extractVideoId = (url: string) => {
   const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
   const match = url.match(regex);
@@ -69,7 +73,7 @@ const extractVideoId = (url: string) => {
   			</v-card-text>
             <v-card-actions>
                 
-                <v-btn color="orange">Editar Som</v-btn>
+                <v-btn color="orange" @click="gotoEditSong(song.id)">Editar Som</v-btn>
                    <v-btn color="red">Apagar</v-btn>
                 </v-card-actions>
           </v-card>
