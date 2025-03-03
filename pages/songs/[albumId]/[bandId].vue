@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// TODO: EDITAR APAGAR E ADICIONAR SOM
 import {useRoute, useRouter} from "vue-router";
 import {useSongs} from "@/composables/useSongs";
 import {useAlbum} from "@/composables/useAlbum"
@@ -20,6 +21,10 @@ const router = useRouter()
 
 const goBack = () => {
   router.back()
+}
+
+const gotoAddSong = () => {
+  router.push(`/add-song/${bandId}/${albumId}`)
 }
 
 const extractVideoId = (url: string) => {
@@ -44,7 +49,7 @@ const extractVideoId = (url: string) => {
        <v-btn color="primary" @click="goBack" class="mb-4">⬅ Voltar</v-btn>
         <v-spacer></v-spacer>
 
-        <v-btn color="primary" class="mb-4">➕ Adicionar Som</v-btn>
+        <v-btn color="primary" @click="gotoAddSong" class="mb-4">➕ Adicionar Som</v-btn>
 
       </v-card-actions>
       <v-row>
