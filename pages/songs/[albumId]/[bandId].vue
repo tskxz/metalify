@@ -53,7 +53,7 @@ const deleteSong = async(id: number) => {
     console.error("Erro ao apagar som:", e)
   } finally {
     showModal.value = false;
-    songToDelte.value = null;
+    songToDelete.value = null;
   }
 }
 </script>
