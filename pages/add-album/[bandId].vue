@@ -5,6 +5,15 @@ import {useRoute, useRouter} from "vue-router"
 const route = useRoute()
 const bandId = Number(route.params.bandId);
 
+const userID = ref(null)
+
+onMounted(() => {
+
+  if (typeof window !== "undefined") {
+    userID.value = localStorage.getItem("userID");
+  }
+});
+
 const albumTitle = ref("")
 const albumImageUrl = ref("")
 
@@ -22,6 +31,7 @@ const submitForm = async () => {
 				title: albumTitle.value,
 				imageUrl: albumImageUrl.value,
 				bandId: bandId,
+				userId: userID.value
 			})
 		})
 
