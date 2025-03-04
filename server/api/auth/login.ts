@@ -30,5 +30,5 @@ export default defineEventHandler(async (event) => {
 		{expiresIn: "1h"}
 	)
 
-	return {token};
+	return {token, userID: user[0].id, username: user[0].username };
 })

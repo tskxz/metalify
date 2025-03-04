@@ -24,6 +24,8 @@ const login = async () => {
 
     // TODO: Use http-only cookie instead of this, this is unsafe...
     localStorage.setItem("token", data.value.token);
+    localStorage.setItem("userID", data.value.userID)
+    localStorage.setItem("username", data.value.username)
 
     router.push("/");
   } catch (error) {
