@@ -25,7 +25,7 @@ async function seed(){
 		{
 			id: 2,
 			name: "Slipknot",
-			genre: "Alternative-Metal",
+			genre: "Nu-Metal",
 			imageUrl: "https://blog.logomyway.com/wp-content/uploads/2021/07/slipknot-logo-2.jpg"
 		},
 		{
@@ -34,6 +34,12 @@ async function seed(){
 			genre: "Thrash-Metal",
 			imageUrl: "https://www.studsandspikes.com/media/catalog/product/cache/ac0a2306909b95a5b7078e2821ec5639/9/p/9pts22meta01_design.jpg"
 		},
+		{
+			id: 4,
+			name: "Linking Park",
+			genre: "Nu-Metal",
+			imageUrl: "https://band-logos.com/wp-content/uploads/2024/09/linkin-park-band-logo-symbol.png"
+		}
 	];
 
 	await db.insert(bands).values(bandsData);
@@ -57,6 +63,20 @@ async function seed(){
 	      title: "Master of Puppets",
 	      bandId: 3,
 	      imageUrl: "https://upload.wikimedia.org/wikipedia/en/b/b2/Metallica_-_Master_of_Puppets_cover.jpg",
+	    },
+	    {
+	    	id: 4,
+	    	title: "Meteora",
+	    	bandId: 4,
+	    	imageUrl: "https://upload.wikimedia.org/wikipedia/pt/8/83/Linkin_park-meteora_a.jpg"
+
+	    },
+	    {
+	    	id: 5,
+	    	title: "Hybrid Theory",
+	    	bandId: 4,
+	    	imageUrl: "https://upload.wikimedia.org/wikipedia/pt/2/23/Linkin_Park_Hybrid_Theory.jpg"
+
 	    },
 	];
 
@@ -105,6 +125,92 @@ async function seed(){
 	      bandId: 3,
 	      youtubeUrl: "https://www.youtube.com/watch?v=E0ozmU9cJDg",
 	    },
+	    {
+	    	id: 7,
+	    	title: "Somewhere I Belong",
+	    	albumId: 4,
+	    	bandId: 4,
+	    	youtubeUrl: "https://www.youtube.com/watch?v=zsCD5XCu6CM"
+	    },
+	    {
+	    	id: 8,
+	    	title: "Numb",
+	    	albumId: 4,
+	    	bandId: 4,
+	    	youtubeUrl: "https://www.youtube.com/watch?v=kXYiU_JCYtU"
+	    },
+	    {
+	    	id: 9,
+	    	title: "In the End",
+	    	albumId: 5,
+	    	bandId: 4,
+	    	youtubeUrl: "https://youtu.be/eVTXPUF4Oz4"
+	    },
+	    {
+	    	id: 10,
+	    	title: "One Step Closer",
+	    	albumId: 5,
+	    	bandId: 4,
+	    	youtubeUrl: "https://youtu.be/4qlCC1GOwFw"
+	    },
+	    {
+	    	id: 11,
+	    	title: "Points of Authority",
+	    	albumId: 5,
+	    	bandId: 4,
+	    	youtubeUrl: "https://youtu.be/jZSPAp8kCl4?list=OLAK5uy_lSMQPNivp-Z7pyTLWNVS5Po6aXRFqYR7U"
+	    },
+	    {
+	    	id: 12,
+	    	title: "A Place For My Head",
+	    	albumId: 5,
+	    	bandId: 4,
+	    	youtubeUrl: "https://youtu.be/3t2WkCudwfY?list=OLAK5uy_lSMQPNivp-Z7pyTLWNVS5Po6aXRFqYR7U"
+	    },
+	    {
+	    	id: 13,
+	    	title: "Papercut",
+	    	albumId: 5,
+	    	bandId: 4,
+	    	youtubeUrl: "https://youtu.be/vjVkXlxsO8Q?list=OLAK5uy_lSMQPNivp-Z7pyTLWNVS5Po6aXRFqYR7U"
+	    },
+	    {
+	    	id: 14,
+	    	title: "With You",
+	    	albumId: 5,
+	    	bandId: 4,
+	    	youtubeUrl: "https://youtu.be/M8UTS2iFXOo?list=OLAK5uy_lSMQPNivp-Z7pyTLWNVS5Po6aXRFqYR7U"
+	    },
+	    {
+	    	id: 15,
+	    	title: "Crawling",
+	    	albumId: 5,
+	    	bandId: 4,
+	    	youtubeUrl: "https://youtu.be/Gd9OhYroLN0?list=OLAK5uy_lSMQPNivp-Z7pyTLWNVS5Po6aXRFqYR7U"
+	    },
+	    {
+	    	id: 16,
+	    	title: "Runaway",
+	    	albumId: 5,
+	    	bandId: 4,
+	    	youtubeUrl: "https://youtu.be/ig-fyQqf510?list=OLAK5uy_lSMQPNivp-Z7pyTLWNVS5Po6aXRFqYR7U"
+	    },
+	    {
+	    	id: 17,
+	    	title: "By Myself",
+	    	albumId: 5,
+	    	bandId: 4,
+	    	youtubeUrl: "https://youtu.be/ig-fyQqf510?list=OLAK5uy_lSMQPNivp-Z7pyTLWNVS5Po6aXRFqYR7U"
+	    },
+	    {
+	    	id: 18,
+	    	title: "Forgotten",
+	    	albumId: 5,
+	    	bandId: 4,
+	    	youtubeUrl: "https://youtu.be/HNCgBuI2eJc?list=OLAK5uy_lSMQPNivp-Z7pyTLWNVS5Po6aXRFqYR7U"
+	    },
+
+
   	];
 
   	await db.insert(songs).values(songsData);
