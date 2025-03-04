@@ -10,21 +10,22 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-  modules: [
-    (_options, nuxt) => {
-      nuxt.hooks.hook('vite:extendConfig', (config) => {
-        // @ts-expect-error
-        config.plugins.push(vuetify({ autoImport: true }))
-      })
+  modules: ["@sentry/nuxt/module"],
+  sentry: {
+    sourceMapsUploadOptions: {
+      org: "metalify",
+      project: "metalify",
     },
-    //...
-  ],
+    autoInjectServerSentry: "top-level-import",
+  },
+  sourcemap: { client: "hidden" },
+
   vite: {
-    vue: {
-      template: {
-        transformAssetUrls,
-      },
-    },
+    plugins: [
+      vuetify({
+        autoImport: true,
+      }),
+    ],
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true }
