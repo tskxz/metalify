@@ -2,10 +2,18 @@ import {ref, onMounted} from "vue"
 
 export function useBands(genre?: string){
   const bands = ref([])
+  const userID = ref(null)
+
+  onMounted(() => {
+
+    if (typeof window !== "undefined") {
+      userID.value = localStorage.getItem("userID");
+    }
+  });
 
   const fetchBands = async () => {
     try {
-      const res = await fetch("api/bands", {
+      const res = await fetch(`api/bands/user/${userID.value}`, {
         method: "GET",
       });
 
