@@ -9,7 +9,7 @@ const JWT_SECRET = "teste"
 export default defineEventHandler(async (event) => {
 	const {email, password } = await readBody(event);
 
-	const user = await db.select().from(users).where(users.email.eq(email)).limit(1).execute();
+	const user = await db.select().from(users).where(eq(users.email, email)).limit(1).execute();
 
 	if(!user || !user[0]){
 		throw createError({statusCode: 400, statusMessage: "Utilizador nao encontrado :("})
