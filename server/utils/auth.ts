@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken"
 const JWT_SECRET = "teste"
 
+//TODO: use getCookie and setCookie
+
 export default defineEventHandler(async (event) => {
 	const token = event.node.req.headers["authorization"]?.replace("Bearer ", "");
 

@@ -21,6 +21,8 @@ export default defineEventHandler(async (event) => {
 		throw createError({statusCode: 400, statusMessage: "Password errada..."})
 	}
 
+	// TODO: Define token as cookie
+
 	const token = jwt.sign(
 		{
 			userID: user[0].id,
