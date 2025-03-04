@@ -4,10 +4,21 @@ import {useRouter} from "vue-router"
 
 const router = useRouter()
 
+const userID = ref(null)
+
+onMounted(() => {
+
+  if (typeof window !== "undefined") {
+    userID.value = localStorage.getItem("userID");
+  }
+});
+
+
 const band = ref({
     name: "",
     genre: "",
     imageUrl: "",
+    userId: userID
 })
 
 const successMessage = ref("")
@@ -31,7 +42,8 @@ const submitBand = async() => {
         band.value = {
             name: "",
             genre: "",
-            imageUrl: ""
+            imageUrl: "",
+            userId: userID
         }
 
         setTimeout(() => router.back(), 1500);

@@ -5,7 +5,14 @@ export function useBands(genre?: string){
 
   const fetchBands = async () => {
     try {
-      const res = await fetch("api/bands");
+      const res = await fetch("api/bands", {
+        method: "GET",
+      });
+
+      if (!res.ok) {
+        throw new Error("Erro ao carregar bandas");
+      }
+
       let data = await res.json();
 
       if(genre){
