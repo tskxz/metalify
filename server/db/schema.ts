@@ -39,7 +39,7 @@ export const usersRelations = relations(users, ({many}) => ({
   songs: many(songs),
 }))
 
-export const bandsRelations = relations(bands, ({ many }) => ({
+export const bandsRelations = relations(bands, ({ one, many }) => ({
   albums: many(albums),
   user: one(users),
 }));
