@@ -41,13 +41,13 @@ export const usersRelations = relations(users, ({many}) => ({
 
 export const bandsRelations = relations(bands, ({ one, many }) => ({
   albums: many(albums),
-  user: one(users),
+  user: one(users, { fields: [bands.userId], references: [users.id] }),
 }));
 
 export const albumsRelations = relations(albums, ({ one, many }) => ({
   band: one(bands, { fields: [albums.bandId], references: [bands.id] }),
   songs: many(songs),
-  user: one(users),
+  user: one(users, { fields: [albums.userId], references: [users.id] }),
 }));
 
 export const songsRelations = relations(songs, ({ one }) => ({
