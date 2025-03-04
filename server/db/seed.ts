@@ -20,13 +20,13 @@ async function seed(){
 			id: 1,
 			name: "Korn",
 			genre: "Nu-Metal",
-			imageUrl: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0e253b4c-9d15-41b0-91ae-819440c216d1/d3evldd-27efa750-95e3-4054-8080-4ff2f3dbde18.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzBlMjUzYjRjLTlkMTUtNDFiMC05MWFlLTgxOTQ0MGMyMTZkMVwvZDNldmxkZC0yN2VmYTc1MC05NWUzLTQwNTQtODA4MC00ZmYyZjNkYmRlMTguanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ncXCH0m28RP_WqYmjecT8ufabel0kG-fOGmCmswPshg"
+			imageUrl: "https://cdn.europosters.eu/image/750/56896.jpg"
 		},
 		{
 			id: 2,
 			name: "Slipknot",
 			genre: "Nu-Metal",
-			imageUrl: "https://blog.logomyway.com/wp-content/uploads/2021/07/slipknot-logo-2.jpg"
+			imageUrl: "https://cdn.europosters.eu/image/750/56926.jpg"
 		},
 		{
 			id: 3,
