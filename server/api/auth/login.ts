@@ -2,11 +2,12 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import {db} from "../../db"
 import {users} from "../../db/schema"
+import { eq } from "drizzle-orm";
 
 const JWT_SECRET = "teste"
 
 export default defineEventHandler(async (event) => {
-	const {email, password } = await useBody(event);
+	const {email, password } = await readBody(event);
 
 	const user = await db.select().from(users).where(users.email.eq(email)).limit(1).execute();
 
