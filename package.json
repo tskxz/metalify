@@ -21,6 +21,9 @@
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.12",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
     "vite-plugin-vuetify": "^2.1.0"
   }
 }
