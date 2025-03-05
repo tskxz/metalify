@@ -6,14 +6,28 @@ import { useBand } from "@/composables/useBand";
 import { computed } from "vue";
 import {useRouter} from "vue-router";
 import {useRuntimeConfig} from "#app"
+import {useAuthStore} from "@/stores/auth"
+
+const authStore = useAuthStore()
+const {username, userID} = storeToRefs(authStore);
+
+authStore.loadUserFromLocalStorage();
 
 const config = useRuntimeConfig()
 
 const route = useRoute();
 const bandId = Number(route.params.id);
 
+    onMounted(() => {
+
+      if (typeof window !== "undefined") {
+        userID.value = localStorage.getItem("userID");
+      }
+    });
+
 const { albums } = useAlbums(bandId);
 const {band} = useBand(bandId)
+
 
 const router = useRouter()
 
@@ -77,6 +91,7 @@ const deleteAlbum = async (id: number) => {
           <v-card>
             <v-img v-if="album.imageUrl" :src="album.imageUrl" height="600px" cover></v-img>
             <v-card-title>{{ album.title }}</v-card-title>
+            <v-card-title v-if="album.userId != userID">O gajo nao devia ver isto pa</v-card-title>
             <v-card-actions>
                 <v-btn color="primary" @click="goToSongs(album.id)">Ver Sons</v-btn>
                 <v-btn color="orange" @click="goToEditAlbum(album.id)">Editar Album</v-btn>

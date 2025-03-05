@@ -5,6 +5,13 @@ import {useAlbum} from "@/composables/useAlbum"
 import { useBand } from "@/composables/useBand";
 import {computed} from "vue"
 import {useRuntimeConfig} from "#app"
+import {storeToRefs} from "pinia"
+import {useAuthStore} from "@/stores/auth"
+
+const authStore = useAuthStore()
+const {username, userID} = storeToRefs(authStore);
+
+authStore.loadUserFromLocalStorage();
 
 const config = useRuntimeConfig()
 
@@ -89,6 +96,7 @@ const deleteSong = async(id: number) => {
 			      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 			      allowfullscreen
 			    ></iframe>
+          <v-card-title v-if="song.userId != userID">O gajo nao devia ver isto pa</v-card-title>
   			</v-card-text>
             <v-card-actions>
                 

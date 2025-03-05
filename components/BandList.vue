@@ -3,6 +3,12 @@
 import { useBands } from "@/composables/useBands";
 import { useRouter } from "vue-router";
 import { useRuntimeConfig } from "#app";
+import {useAuthStore} from "@/stores/auth"
+
+const authStore = useAuthStore()
+const {username, userID} = storeToRefs(authStore);
+
+authStore.loadUserFromLocalStorage();
 
 const config = useRuntimeConfig();
 

@@ -9,6 +9,16 @@ const albumId = Number(route.params.albumId)
 const songTitle = ref("")
 const songYoutubeUrl = ref("")
 
+const userID = ref(null)
+
+onMounted(() => {
+
+  if (typeof window !== "undefined") {
+    userID.value = localStorage.getItem("userID");
+  }
+});
+
+
 const router = useRouter()
 
 const submitForm = async () => {
@@ -23,6 +33,7 @@ const submitForm = async () => {
 				youtubeUrl: songYoutubeUrl.value,
 				bandId: bandId,
 				albumId: albumId,
+				userId: userID.value
 			})
 		})
 
