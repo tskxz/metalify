@@ -5,43 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1740817854392,
-      "tag": "0000_concerned_tattoo",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1740840532053,
-      "tag": "0001_odd_jocasta",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1740844233154,
-      "tag": "0002_gigantic_lady_ursula",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "6",
-      "when": 1740844362171,
-      "tag": "0003_woozy_freak",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "6",
-      "when": 1740844411802,
-      "tag": "0004_empty_paibok",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "6",
-      "when": 1741109113380,
-      "tag": "0005_plain_wallow",
+      "when": 1741189702550,
+      "tag": "0000_white_roulette",
       "breakpoints": true
     }
   ]
