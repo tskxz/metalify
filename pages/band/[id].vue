@@ -6,12 +6,17 @@ import { useBand } from "@/composables/useBand";
 import { computed } from "vue";
 import {useRouter} from "vue-router";
 import {useRuntimeConfig} from "#app"
+import {useAuthStore} from "@/stores/auth"
+
+const authStore = useAuthStore()
+const {username, userID} = storeToRefs(authStore);
+
+authStore.loadUserFromLocalStorage();
 
 const config = useRuntimeConfig()
 
 const route = useRoute();
 const bandId = Number(route.params.id);
-const userID = ref(null)
 
     onMounted(() => {
 

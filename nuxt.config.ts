@@ -10,7 +10,8 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-  modules: ["@sentry/nuxt/module"],
+  modules: ["@sentry/nuxt/module", "@pinia/nuxt"],
+  
   sentry: {
     sourceMapsUploadOptions: {
       org: "metalify",

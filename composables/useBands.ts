@@ -1,8 +1,13 @@
 import {ref, onMounted} from "vue"
+import {useAuthStore} from "@/stores/auth"
+import {storeToRefs} from "pinia"
 
 export function useBands(genre?: string){
+  const authStore = useAuthStore()
+  const { username, userID } = storeToRefs(authStore);
+
+  authStore.loadUserFromLocalStorage();
   const bands = ref([])
-  const userID = ref(null)
 
   onMounted(() => {
 
@@ -15,6 +20,9 @@ export function useBands(genre?: string){
     try {
       const res = await fetch(`api/bands/user/${userID.value}`, {
         method: "GET",
+        headers: {
+          Authorization: `Bearer ${authStore.token}`,
+        },
       });
 
       if (!res.ok) {

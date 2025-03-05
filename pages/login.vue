@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
+
+const authStore = useAuthStore();
 
 const router = useRouter();
 const email = ref("");
@@ -22,10 +25,7 @@ const login = async () => {
       throw new Error(error.value.statusMessage);
     }
 
-    // TODO: Use http-only cookie instead of this, this is unsafe...
-    localStorage.setItem("token", data.value.token);
-    localStorage.setItem("userID", data.value.userID)
-    localStorage.setItem("username", data.value.username)
+    authStore.setUser(data.value);
 
     router.push("/");
   } catch (error) {
