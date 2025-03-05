@@ -1,0 +1,7 @@
+name = "metalify"
+compatibility_date = "2024-03-05"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "metalify-db"
+database_id = "1c11661e-6c3f-48f6-9c33-dbb754b076d5"
