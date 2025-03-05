@@ -13,6 +13,12 @@ export default defineNuxtConfig({
   modules: ["@sentry/nuxt/module", "@pinia/nuxt"],
   
   sentry: {
+    dsn: process.env.SENTRY_DSN,
+    enabled: process.env.SENTRY_ENABLED === "true",
+    environment: process.env.NUXT_ENV,
+    autoSessionTracking: true,
+    attachStacktrace: true,
+    tracing: true,
     sourceMapsUploadOptions: {
       org: "metalify",
       project: "metalify",
