@@ -4,6 +4,7 @@ import { useRouter } from "vue-router";
 
 const userID = ref(null);
 const username = ref(null);
+const isLoading = ref(true);
 
 const router = useRouter();
 
@@ -13,6 +14,7 @@ onMounted(() => {
     userID.value = localStorage.getItem("userID");
     username.value = localStorage.getItem("username");
   }
+  isLoading.value = false
 });
 
 const logout = () => {
@@ -35,12 +37,14 @@ const logout = () => {
       <v-toolbar-title>Metalify</v-toolbar-title>
     </router-link>
     <v-spacer></v-spacer>
-    <template v-if="username">
-      <v-btn color="white">Bem-vindo, {{ username }}</v-btn>
-      <v-btn @click="logout" color="white">Sair</v-btn>
-    </template>
-    <template v-else>
-      <v-btn to="/login" color="white">Login</v-btn>
+   <template v-if="!isLoading">
+      <template v-if="username">
+        <v-btn color="white">Bem-vindo, {{ username }}</v-btn>
+        <v-btn @click="logout" color="white">Sair</v-btn>
+      </template>
+      <template v-else>
+        <v-btn to="/login" color="white">Login</v-btn>
+      </template>
     </template>
     <v-btn to="/add-band" color="white">➕ Adicionar Banda</v-btn>
   </v-app-bar>
