@@ -3,6 +3,7 @@ import {ref} from "vue";
 import {useRoute, useRouter} from "vue-router"
 import { storeToRefs } from "pinia";
 import {useAuthStore} from "@/stores/auth"
+import { useBand } from "@/composables/useBand";
 
 const authStore = useAuthStore()
 const {username, userID} = storeToRefs(authStore);
@@ -36,9 +37,15 @@ const albumImageUrl = ref("")
 
 const router = useRouter()
 
+const {band} = useBand(bandId)
+
 const submitForm = async () => {
 	try {
-		console.log("bandId:", bandId);
+		if(band.value.userId != userID.value){
+			alert("Nao tem permissao para adicionar este album")
+			return;
+		}
+
 		const response = await fetch(`/api/albums`, {
 			method: "POST",
 			headers: {
@@ -47,7 +54,7 @@ const submitForm = async () => {
 			body: JSON.stringify({
 				title: albumTitle.value,
 				imageUrl: albumImageUrl.value,
-				bandId: bandId,
+				bandId: band.value.id,
 				userId: userID.value
 			})
 		})
@@ -70,7 +77,7 @@ const submitForm = async () => {
 	<template v-if="isAuthenticated">
 	<v-container>
 		<v-card class="pa-4 mx-auto" max-width="500">
-			<v-card-title class="text-h5">Adicionar Novo album</v-card-title>
+			<v-card-title class="text-h5">Adicionar Novo album da banda</v-card-title>
 			<v-divider class="mb-4"></v-divider>
 			<v-form @submit.prevent="submitForm">
 				<v-text-field v-model="albumTitle" label="Titulo do album" required></v-text-field>

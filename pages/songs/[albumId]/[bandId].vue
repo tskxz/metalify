@@ -84,7 +84,8 @@ const deleteSong = async(id: number) => {
       </v-card-actions>
       <v-row>
         <v-col v-for="song in songs" :key="song.id" cols="12" md="6" lg="4">
-          <v-card>
+          <v-card-title v-if="song.userId != userID">Nao tens permissao para ver o som</v-card-title>
+          <v-card v-else>
             
             <v-card-title>{{ song.title }}</v-card-title>
             <v-card-text v-if="song.youtubeUrl">
@@ -96,7 +97,7 @@ const deleteSong = async(id: number) => {
 			      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 			      allowfullscreen
 			    ></iframe>
-          <v-card-title v-if="song.userId != userID">O gajo nao devia ver isto pa</v-card-title>
+          
   			</v-card-text>
             <v-card-actions>
                 

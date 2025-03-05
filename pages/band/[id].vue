@@ -96,15 +96,16 @@ const deleteAlbum = async (id: number) => {
         <v-btn color="primary" @click="goBack" class="mb-4">⬅ Voltar</v-btn>
         <v-spacer></v-spacer>
 
+        
         <v-btn color="primary" @click="goToAddAlbum" class="mb-4">➕ Adicionar Album</v-btn>
 
       </v-card-actions>
       <v-row>
         <v-col v-for="album in albums" :key="album.id" cols="12" md="6" lg="4">
-          <v-card>
+          <v-card-title v-if="album.userId != userID">Nao tens permissao para ver o album</v-card-title>
+          <v-card v-else>
             <v-img v-if="album.imageUrl" :src="album.imageUrl" height="600px" cover></v-img>
             <v-card-title>{{ album.title }}</v-card-title>
-            <v-card-title v-if="album.userId != userID">O gajo nao devia ver isto pa</v-card-title>
             <v-card-actions>
                 <v-btn color="primary" @click="goToSongs(album.id)">Ver Sons</v-btn>
                 <v-btn color="orange" @click="goToEditAlbum(album.id)">Editar Album</v-btn>
