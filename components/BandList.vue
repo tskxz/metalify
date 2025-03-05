@@ -3,12 +3,25 @@
 import { useBands } from "@/composables/useBands";
 import { useRouter } from "vue-router";
 import { useRuntimeConfig } from "#app";
+import { storeToRefs } from "pinia";
 import {useAuthStore} from "@/stores/auth"
 
 const authStore = useAuthStore()
 const {username, userID} = storeToRefs(authStore);
 
 authStore.loadUserFromLocalStorage();
+
+const isAuthenticated = computed(() => !!username.value);
+const isLoading = ref(true);
+
+onMounted(() => {
+   setTimeout(() => {
+        if (!isAuthenticated.value) {
+            router.push("/login");
+        }
+        isLoading.value = false;
+    }, 500);
+});
 
 const config = useRuntimeConfig();
 
@@ -48,49 +61,55 @@ const deleteBand = async (id: number) => {
 </script>
 
 <template>
-    <v-container>
-        <v-card class="pa-4">
-            <v-card-title class="text-h5"
-                >🎸 Bandas de {{ genre }}</v-card-title
-            >
-            <v-divider class="mb-4"></v-divider>
-             
-              <v-card-actions>
-        <v-btn color="primary" @click="goBack" class="mb-4">⬅ Voltar</v-btn>
-        <v-spacer></v-spacer>
-
-        <v-btn color="primary" to="/add-band" class="mb-4">➕ Adicionar Banda</v-btn>
-      </v-card-actions>
-        <v-spacer></v-spacer>
-            <v-row>
-                <v-col
-                    v-for="band in bands"
-                    :key="band.id"
-                    cols="12"
-                    md="6"
-                    lg="4"
+    <template v-if="isAuthenticated">
+        <v-container>
+            <v-card class="pa-4">
+                <v-card-title class="text-h5"
+                    >🎸 Bandas de {{ genre }}</v-card-title
                 >
-                    <v-card>
-                        <v-img
-                            v-if="band.imageUrl"
-                            :src="band.imageUrl"
-                            height="600px"
-                            cover
-                        ></v-img>
-                        <v-card-title>{{ band.name }}</v-card-title>
-                        <v-card-actions>
-                            <v-btn color="primary" :to="`/band/${band.id}`"
-                                >Ver Albums</v-btn
-                            >
-                            <v-btn color="red" @click="confirmDelete(band.id)"
-                                >Apagar</v-btn
-                            >
-                        </v-card-actions>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-card>
-    </v-container>
+                <v-divider class="mb-4"></v-divider>
+                 
+                  <v-card-actions>
+            <v-btn color="primary" @click="goBack" class="mb-4">⬅ Voltar</v-btn>
+            <v-spacer></v-spacer>
+
+            <v-btn color="primary" to="/add-band" class="mb-4">➕ Adicionar Banda</v-btn>
+          </v-card-actions>
+            <v-spacer></v-spacer>
+                <v-row>
+                    <v-col
+                        v-for="band in bands"
+                        :key="band.id"
+                        cols="12"
+                        md="6"
+                        lg="4"
+                    >
+                        <v-card>
+                            <v-img
+                                v-if="band.imageUrl"
+                                :src="band.imageUrl"
+                                height="600px"
+                                cover
+                            ></v-img>
+                            <v-card-title>{{ band.name }}</v-card-title>
+                            <v-card-actions>
+                                <v-btn color="primary" :to="`/band/${band.id}`"
+                                    >Ver Albums</v-btn
+                                >
+                                <v-btn color="red" @click="confirmDelete(band.id)"
+                                    >Apagar</v-btn
+                                >
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-card>
+        </v-container>
+    </template>
+
+    <template v-else>
+        
+    </template>
 
     <v-dialog v-model="showModal" max-width="400">
         <v-card>

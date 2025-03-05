@@ -2,6 +2,16 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useFetch } from "#app";
+import { useAuthStore } from "@/stores/auth";
+
+const authStore = useAuthStore();
+
+const {userID} = storeToRefs(authStore);
+
+authStore.loadUserFromLocalStorage();
+
+const isAuthenticated = computed(() => !!userID.value);
+const isLoading = ref(true);
 
 const router = useRouter();
 
@@ -11,6 +21,14 @@ const password = ref("");
 const confirmPassword = ref("");
 const errorMessage = ref(null);
 const loading = ref(false);
+
+onMounted(() => {
+  if (isAuthenticated.value) {
+    router.push("/");
+  } else {
+    isLoading.value = false;
+  }
+});
 
 const rules = {
   required: (value) => !!value || "Campo obrigatório",
@@ -52,6 +70,12 @@ const registerUser = async () => {
 </script>
 
 <template>
+  <template v-if="isLoading">
+    <v-container class="d-flex justify-center align-center" style="height: 100vh;">
+      <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+    </v-container>
+  </template>
+  <template v-else>
   <v-container>
     <v-card class="pa-4 mx-auto" max-width="500">
       <v-card-title class="text-h5 text-center"> Criar Conta </v-card-title>
@@ -78,6 +102,7 @@ const registerUser = async () => {
       </v-card-actions>
     </v-card>
   </v-container>
+  </template>
 </template>
 
 <style scoped>

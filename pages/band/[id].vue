@@ -13,6 +13,18 @@ const {username, userID} = storeToRefs(authStore);
 
 authStore.loadUserFromLocalStorage();
 
+const isAuthenticated = computed(() => !!username.value);
+const isLoading = ref(true);
+
+onMounted(() => {
+   setTimeout(() => {
+        if (!isAuthenticated.value) {
+            router.push("/login");
+        }
+        isLoading.value = false;
+    }, 500);
+});
+
 const config = useRuntimeConfig()
 
 const route = useRoute();
@@ -74,6 +86,7 @@ const deleteAlbum = async (id: number) => {
 </script>
 
 <template>
+  <template v-if="isAuthenticated">
   <v-container>
     <v-card class="pa-4">
       <v-card-title>Albums da banda {{ band?.name || "Carregando..." }}</v-card-title>
@@ -102,6 +115,10 @@ const deleteAlbum = async (id: number) => {
       </v-row>
     </v-card>
   </v-container>
+  </template>
+    <template v-else>
+        
+    </template>
 
   <v-dialog v-model="showModal" max-width="400">
     <v-card>

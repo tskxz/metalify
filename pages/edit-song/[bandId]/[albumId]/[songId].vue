@@ -2,6 +2,25 @@
 import {ref, watch} from "vue";
 import {useRoute, useRouter} from "vue-router"
 import {useSong} from "@/composables/useSong"
+import { storeToRefs } from "pinia";
+import {useAuthStore} from "@/stores/auth"
+
+const authStore = useAuthStore()
+const {username, userID} = storeToRefs(authStore);
+
+authStore.loadUserFromLocalStorage();
+
+const isAuthenticated = computed(() => !!username.value);
+const isLoading = ref(true);
+
+onMounted(() => {
+   setTimeout(() => {
+        if (!isAuthenticated.value) {
+            router.push("/login");
+        }
+        isLoading.value = false;
+    }, 500);
+});
 
 const route = useRoute()
 const router = useRouter()
@@ -50,6 +69,7 @@ const submitForm = async() => {
 </script>
 
  <template>
+ 	<template v-if="isAuthenticated">
  	<v-container>
     <v-card class="pa-4 mx-auto" max-width="500">
       <v-card-title class="text-h5">Editar Álbum</v-card-title>
@@ -63,4 +83,8 @@ const submitForm = async() => {
       </v-form>
     </v-card>
   </v-container>
+  </template>
+    <template v-else>
+        
+    </template>
  </template>
