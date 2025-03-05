@@ -3,6 +3,7 @@ import {ref} from "vue"
 import {useROute, useRouter} from "vue-router"
 import { storeToRefs } from "pinia";
 import {useAuthStore} from "@/stores/auth"
+import { useBand } from "@/composables/useBand";
 
 const authStore = useAuthStore()
 const {username, userID} = storeToRefs(authStore);
@@ -38,8 +39,14 @@ onMounted(() => {
 
 const router = useRouter()
 
+const {band} = useBand(bandId)
+
 const submitForm = async () => {
 	try {
+		if(band.value.userId != userID.value){
+			alert("Nao tem permissao para adicionar este album")
+			return;
+		}
 		const response = await fetch("/api/songs", {
 			method: "POST",
 			headers: {

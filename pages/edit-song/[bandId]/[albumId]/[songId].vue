@@ -32,18 +32,27 @@ const songId = Number(route.params.songId)
 
 const songTitle = ref("")
 const songYoutubeUrl = ref("")
+const songUserID = ref("")
 
 const {song} = useSong(songId)
 
 watch(song, (newSong) => {
+	if(newSong.userId != userID.value){
+		return;
+	}
 	if(newSong){
 		songTitle.value = newSong.title
 		songYoutubeUrl.value = newSong.youtubeUrl
+		songUserID.value = newSong.userId
 	}
 })
 
 const submitForm = async() => {
 	try {
+		if(songUserID.value != userID.value){
+			alert("Nao tem permissao para adicionar este album")
+			return;
+		}
 		const response = await fetch(`/api/songs/${songId}`, {
 			method: "PUT",
 			headers: {
@@ -62,7 +71,7 @@ const submitForm = async() => {
 			alert("Erro ao atualiar o album")
 		}
 	} catch(error) {
-		console.error("Erro ao enviar o formulario", e)
+		console.error("Erro ao enviar o formulario", error)
 	}
 }
 
