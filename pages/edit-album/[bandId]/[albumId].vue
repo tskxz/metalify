@@ -30,19 +30,28 @@ const albumId = Number(route.params.albumId)
 
 const albumTitle = ref("")
 const albumImageUrl = ref("")
+const albumUserId = ref("")
 
 const {album} = useAlbum(albumId)
 
 
 watch(album, (newAlbum) => {
+	if(newAlbum.userId != userID.value){
+		return;
+	}
 	if(newAlbum){
 		albumTitle.value = newAlbum.title
 		albumImageUrl.value = newAlbum.imageUrl
+		albumUserId.value = newAlbum.userId
 	}
 })
 
 const submitForm = async() => {
 	try {
+		if(albumUserId.value != userID.value){
+			alert("Nao tem permissao para adicionar este album")
+			return;
+		}
 		const response = await fetch(`/api/albums/${albumId}`, {
 			method: "PUT",
 			headers: {
