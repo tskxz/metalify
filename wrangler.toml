@@ -1,0 +1,15 @@
+name = "metalify"
+node_compat = true
+
+[vars]
+NUXT_ENV = "production"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "metalify-db"
+database_id = "68e28f14-316d-4146-b75c-56bfefd8226f"
+migrations_dir = "server/db/migrations"
+
+[env.production]
+workers_dev = true
+debug = true
