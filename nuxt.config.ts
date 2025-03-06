@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-  modules: ["@sentry/nuxt/module", "@pinia/nuxt"],
+  modules: ["@sentry/nuxt/module", "@pinia/nuxt", "@nuxthub/core"],
   
   sentry: {
     dsn: process.env.SENTRY_DSN,
@@ -38,7 +38,7 @@ export default defineNuxtConfig({
     ],
   },
   nitro: {
-    preset: "cloudflare",
+    preset: "cloudflare_pages",
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true }
