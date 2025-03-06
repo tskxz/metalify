@@ -89,6 +89,9 @@ const login = async () => {
             </v-btn>
           </v-form>
         </v-card-text>
+        <v-card-actions class="justify-center">
+        <p>Não tem uma conta? <NuxtLink to="/register">Criar conta</NuxtLink></p>
+      </v-card-actions>
       </v-card>
     </v-container>
   </template>
