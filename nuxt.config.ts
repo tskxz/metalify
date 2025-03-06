@@ -4,7 +4,10 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      apiBase: "http://localhost:3000/api"
+      apiBase: "/api",
+      sentry: {
+        dsn: process.env.SENTRY_DSN || "",
+      },
     }
   },
   build: {
@@ -33,6 +36,9 @@ export default defineNuxtConfig({
         autoImport: true,
       }),
     ],
+  },
+  nitro: {
+    preset: "cloudflare",
   },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true }
